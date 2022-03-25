@@ -4,7 +4,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./docs/swagger.json')
 
 app.get('/games', (req, res) => {
-    res.send(['witcher 3', 'Cyberpunk 2077'])
+    res.send(['The last Wish', 'Varastatud oranž jalgratas'])
 })
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
