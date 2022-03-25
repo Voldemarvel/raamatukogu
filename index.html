@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -8,17 +9,39 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
+
 <body>
-    <table>
+<div id="app">
+    <table id="booksTable" class="table table-striped table-bordered">
         <tr>
             <th>Name</th>
-            <th>Rating</th>
+            <th>price</th>
         </tr>
-        <tr>
-            <td>The last wish</td>
-            <td>4/5</td>
+        <tr v-for="book in books">
+            <td>{{ book.name }}</td>
+            <td>{{ book.price }}</td>
         </tr>
     </table>
+    
+</div>
+    <script src="https://unpkg.com/vue@3"></script>
+
+    <div id="app">{{ books }}</div>
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/vue@3.2.26/dist/vue.global.js"></script>
+    <script>
+        const vue = Vue.createApp ({
+            data() {
+                return {
+                   books: [] 
+                }
+            },
+            async created() {
+                    this.books = await (await fetch('http://localhost:8080/books')).json();
+            }
+        }).mount('#app')
+    </script>
 </body>
+
 </html>
